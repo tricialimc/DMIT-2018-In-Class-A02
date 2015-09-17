@@ -8,4 +8,4 @@
   </Connection>
 </Query>
 
-Waiters.First(person => person.FirstName.StartsWith ("D"))
+Waiters.FirstOrDefault(person => person.FirstName.StartsWith ("W"))

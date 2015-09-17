@@ -10,4 +10,4 @@
 
 (from theBill in BillItems
 where theBill.BillID == 104
-select theBill.SalePrice * theBill.Quantity).Sum()
+select theBill.SalePrice * theBill.Quantity)
