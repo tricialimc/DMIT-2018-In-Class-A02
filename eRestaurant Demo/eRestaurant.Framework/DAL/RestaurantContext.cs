@@ -19,5 +19,25 @@ namespace eRestaurant.Framework.DAL
         //One property for each Table/Entity in the database
         public DbSet<MenuCategory> MenuCategories { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<Tables> Tables { get; set; }
+        public DbSet<Reservations> Reservations { get; set; }
+        public DbSet<SpecialEvent> SpecialEvents { get; set; }
+        public DbSet<Waiters> Waiters { get; set; }
+        public DbSet<Bills> Bills { get; set; }
+        
+        //For customizing the model of our entities as we want them to match our database, we would put any details
+        //inside the following method
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Reservations>().HasMany(r => r.Tables)
+                        .WithMany(t => t.Reservations)
+                        .Map(mapping =>
+                        {
+                            mapping.ToTable("ReservationTables");
+                            mapping.MapLeftKey("ReservationID");
+                            mapping.MapRightKey("TableID");
+                        });
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

@@ -50,11 +50,14 @@
   <ItemGroup>
     <Compile Include="BLL\TempController.cs" />
     <Compile Include="DAL\RestaurantContext.cs" />
+    <Compile Include="Entities\BillItems.cs" />
+    <Compile Include="Entities\Bills.cs" />
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\Reservations.cs" />
     <Compile Include="Entities\Tables.cs" />
     <Compile Include="Entities\SpecialEvent.cs" />
     <Compile Include="Entities\MenuCategory.cs" />
+    <Compile Include="Entities\Waiters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
