@@ -20,7 +20,7 @@ namespace eRestaurant.Framework.Entities
         public int? ReservationID { get; set; }
         public bool OrderReady { get; set; }
         public string Comment { get; set; }
-
+        
         // Navigation Properties
         public virtual ICollection<BillItems> Items { get; set; }
         public virtual Waiters Waiter { get; set; }
