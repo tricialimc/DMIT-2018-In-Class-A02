@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema; // [Column]
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace eRestaurant.Framework.Entities
 {
-    class BillItems
+    public class BillItems
     {
+        //The database table that this will map to has a composite key.
         [Key, Column(Order = 1)]
         public int BillID { get; set; }
         [Key, Column(Order = 2)]

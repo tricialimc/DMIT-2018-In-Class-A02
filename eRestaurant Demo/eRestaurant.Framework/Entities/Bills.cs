@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eRestaurant.Framework.Entities
 {
-    class Bills
+    public class Bills
     {
         public int BillID { get; set; }
         public DateTime BillDate { get; set; }
@@ -21,7 +21,7 @@ namespace eRestaurant.Framework.Entities
         public string Comment { get; set; }
 
         // Navigation Properties
-        public virtual ICollection<BillItem> Items { get; set; }
+        public virtual ICollection<BillItems> Items { get; set; }
         public virtual Waiters Waiter { get; set; }
         public virtual Tables Table { get; set; }
 

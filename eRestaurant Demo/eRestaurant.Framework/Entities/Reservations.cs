@@ -34,7 +34,7 @@ namespace eRestaurant.Framework.Entities
         public string EventCode { get; set; }
 
         //Navigation Properties
-        public virtual ICollection<Tables> Tables { get; set; } //one to many relationship
-        public virtual SpecialEvent SpecialEvent { get; set; } //one to one relationship
+        public virtual ICollection<Tables> Tables { get; set; } //one resevation to many tables relationship
+        public virtual SpecialEvent SpecialEvent { get; set; } //one reservation to one special event relationship
     }
 }

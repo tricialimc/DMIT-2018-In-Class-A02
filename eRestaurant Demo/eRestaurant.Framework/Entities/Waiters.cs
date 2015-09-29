@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eRestaurant.Framework.Entities
 {
-    class Waiters
+    public class Waiters
     {
         public int WaiterID { get; set; }
         [Required(AllowEmptyStrings = false), StringLength(25)]
