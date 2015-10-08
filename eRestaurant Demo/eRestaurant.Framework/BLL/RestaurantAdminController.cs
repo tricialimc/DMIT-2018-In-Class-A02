@@ -13,6 +13,7 @@ namespace eRestaurant.Framework.BLL
     public class RestaurantAdminController
     {
         //The ObjectDataSource control will do the background communication for CRUD operations
+        #region Manage Special Events(CRUD)
         //allows the ObjectDataSource to see the method as something we can SELECT from
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<SpecialEvent> ListAllSpecialEvents()
@@ -71,5 +72,49 @@ namespace eRestaurant.Framework.BLL
                 context.SaveChanges();
             }
         }
+    #endregion
+        #region Manage Waiters(CRUD)
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<Waiters> ListAllWaiters()
+        {
+            using (RestaurantContext context = new RestaurantContext())
+            {
+                return context.Waiters.ToList();
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Update, false)]
+        public void UpdateWaiter (Waiters item)
+        {
+            using(RestaurantContext context = new RestaurantContext())
+            {
+                var attached = context.Waiters.Attach(item);
+                var existing = context.Entry<Waiters>(attached);
+                existing.State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Delete, false)]
+        public void DeleteWaiter(Waiters item)
+        {
+            using(RestaurantContext context = new RestaurantContext())
+            {
+                var existing = context.Waiters.Find(item.WaiterID);
+                context.Waiters.Remove(existing);
+                context.SaveChanges();
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Insert,false)]
+        public void InsertWaiter(Waiters item)
+        {
+            using (var context = new RestaurantContext())
+            {
+                var added = context.Waiters.Add(item);
+                context.SaveChanges();
+            }
+        }
+        #endregion
     }
 }
