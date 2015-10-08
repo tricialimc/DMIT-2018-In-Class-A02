@@ -15,7 +15,7 @@ namespace eRestaurant.Framework.Entities
         public string EventCode { get; set; }
 
         [Required()] //Can put required without a required message
-        [StringLength(30, MinimumLength = 5)] //Can put only the maximum length and min length
+        [StringLength(30, MinimumLength = 5, ErrorMessage="Description has to be 5 to 30 characters")] //Can put only the maximum length and min length
         public string Description { get; set; }
 
         public bool Active { get; set; }

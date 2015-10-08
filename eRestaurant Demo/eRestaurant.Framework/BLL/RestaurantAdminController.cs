@@ -25,5 +25,51 @@ namespace eRestaurant.Framework.BLL
                 return context.SpecialEvents.ToList();
             }
         }
+        [DataObjectMethod(DataObjectMethodType.Update, false)]
+        public void UpdateSpecialEvent(SpecialEvent item)
+        { 
+            using(RestaurantContext context = new RestaurantContext())
+            {
+                //First attach the item to the dbContext collection
+                var attached = context.SpecialEvents.Attach(item);
+                //Second, get the entry for the existing data that should match for
+                //this specific special event
+                var existing = context.Entry<SpecialEvent>(attached);
+
+                //Third, mark that the object's values have changed
+                existing.State = System.Data.Entity.EntityState.Modified;
+                //Lastly, save the changes in the database
+                context.SaveChanges();
+            }
+        }
+        [DataObjectMethod(DataObjectMethodType.Delete, false)]
+        public void DeleteSpecialEvent(SpecialEvent item)
+        {
+            using(RestaurantContext context = new RestaurantContext())
+            {
+                //First, get a reference to the actual item in the Db
+                //Find() is a method to look up an item by its primary key
+                var existing = context.SpecialEvents.Find(item.EventCode);
+
+                //Second, remove the item from the database context
+                context.SpecialEvents.Remove(existing);
+
+                //Lastly, save the changes to the database
+                context.SaveChanges();
+            }
+        }
+        [DataObjectMethod(DataObjectMethodType.Insert,false)]
+        public void InsertSpecialEvent(SpecialEvent item)
+        {
+            using(var context = new RestaurantContext())
+            {
+                //Add the item to the dbContext
+                var added = context.SpecialEvents.Add(item);
+                //This only shows that the Add() object will return the newly added object
+
+                //Save the changes to the database
+                context.SaveChanges();
+            }
+        }
     }
 }
