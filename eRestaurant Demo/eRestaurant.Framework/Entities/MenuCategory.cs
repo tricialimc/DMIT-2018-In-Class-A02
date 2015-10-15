@@ -13,7 +13,7 @@ namespace eRestaurant.Framework.Entities
         public int MenuCategoryID {get; set;}
 
         [Required(ErrorMessage = "A Description is required (5-15 characters")]
-        [StringLength(15, MinimumLength = 5, ErrorMessage = "Descriptions must be from 5 to 35 characters in length")]
+        [StringLength(15, MinimumLength = 5, ErrorMessage = "Descriptions must be from 5 to 15 characters in length")]
         public string Description { get; set; }   
         
 
