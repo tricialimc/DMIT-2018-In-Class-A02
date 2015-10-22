@@ -1,5 +1,5 @@
-﻿using eRestaurant.Framework.DAL; //access the DAL class
-using eRestaurant.Framework.Entities; //Access the namespace for entity classes
+﻿using eRestaurant.Framework.DAL; // Access the DAL class
+using eRestaurant.Framework.Entities; // Access the namespace for my entity classes
 using System;
 using System.Collections.Generic;
 using System.Linq;

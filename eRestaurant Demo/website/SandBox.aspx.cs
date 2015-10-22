@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class SandBox : System.Web.UI.Page
+public partial class Sandbox : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -14,7 +14,7 @@ public partial class SandBox : System.Web.UI.Page
         {
             var controller = new TempController();
             var data = controller.ListMenuCategories();
-            //Hook the data up to the GridView
+            // Hook the data up to the GridView
             MenuCategoryGrid.DataSource = data;
             MenuCategoryGrid.DataBind();
         }

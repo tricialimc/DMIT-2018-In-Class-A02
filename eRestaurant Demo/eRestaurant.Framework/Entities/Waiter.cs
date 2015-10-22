@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace eRestaurant.Framework.Entities
 {
-    public class Waiters
+    public class Waiter
     {
-        [Key]
         public int WaiterID { get; set; }
         [Required(AllowEmptyStrings = false), StringLength(25)]
         public string FirstName { get; set; }
@@ -21,7 +21,10 @@ namespace eRestaurant.Framework.Entities
         public string Address { get; set; }
         public DateTime HireDate { get; set; }
         public DateTime? ReleaseDate { get; set; }
-       
-        public virtual ICollection<Bills> Bill { get; set; }
+        [NotMapped]
+        public string FullName { get { return FirstName + " " + LastName; } }
+
+        // Navigation Properties
+        public virtual ICollection<Bill> Bills { get; set; }
     }
 }
