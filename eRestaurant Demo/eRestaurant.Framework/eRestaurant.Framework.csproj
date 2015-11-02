@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="BLL\MenuController.cs" />
     <Compile Include="BLL\ReportController.cs" />
+    <Compile Include="BLL\ReservationsController.cs" />
     <Compile Include="BLL\RestaurantAdminController.cs" />
     <Compile Include="BLL\Security\RoleManager.cs" />
     <Compile Include="BLL\Security\UserManager.cs" />
@@ -67,9 +68,12 @@
     <Compile Include="Entities\Bill.cs" />
     <Compile Include="Entities\BillItem.cs" />
     <Compile Include="Entities\DTOs\CategoryDTO.cs" />
+    <Compile Include="Entities\DTOs\DailyReservation.cs" />
     <Compile Include="Entities\DTOs\MenuItemDTO.cs" />
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\MenuCategory.cs" />
+    <Compile Include="Entities\POCOs\ActiveEvent.cs" />
+    <Compile Include="Entities\POCOs\Booking.cs" />
     <Compile Include="Entities\POCOs\CategoryMenuItem.cs" />
     <Compile Include="Entities\Reservation.cs" />
     <Compile Include="Entities\Security\ApplicationUser.cs" />
