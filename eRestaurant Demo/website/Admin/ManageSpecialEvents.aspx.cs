@@ -15,10 +15,13 @@ public partial class Admin_ManageSpecialEvents : System.Web.UI.Page
     {
         if(e.Exception != null)
         {
+            //Message User Control is to centralize all error handling
+            //This will show the Error messages of the attributes within the Entities
+            MessageUserControl.HandleDataBoundException(e);
             // We can display a message.
-            MessageLabel.Text = "Unable to process the request.";
+            //MessageLabel.Text = "Unable to process the request.";
             // Prevent the error from being handled by the ObjectDataSource control itself
-            e.ExceptionHandled = true; // I've dealt with the problem
+            //e.ExceptionHandled = true; // I've dealt with the problem
         }
     }
 }
