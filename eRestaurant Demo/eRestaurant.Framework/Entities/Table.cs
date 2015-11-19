@@ -19,6 +19,7 @@ namespace eRestaurant.Framework.Entities
         public bool Available { get; set; }
 
         // Navigation Properties
+        public virtual ICollection<Bill> Bills { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
 
         public Table()
