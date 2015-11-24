@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using eRestaurant.Framework.Entities.DTOs;
 using eRestaurant.Framework.DAL;
 using eRestaurant.Framework.Entities;
+using System.Data.Entity;
 
 namespace eRestaurant.Framework.BLL
 {
@@ -32,7 +33,9 @@ namespace eRestaurant.Framework.BLL
 				              where walkIn.BillDate.Year == date.Year
 						         && walkIn.BillDate.Month == date.Month
 							     && walkIn.BillDate.Day == date.Day
-							     && (!walkIn.OrderPaid.HasValue || walkIn.OrderPaid.Value >= time)
+                                 //the following won't work in EF to Entities
+							     //&& (!walkIn.OrderPaid.HasValue || walkIn.OrderPaid.Value >= time)
+                                 && DbFunctions.CreateTime(walkIn.BillDate.Hour, walkIn.BillDate.Minute, walkIn.BillDate.Second) <= time
 						      select walkIn,
 				    // This sub-query gets the bills for reservations
 				    Reservations = from Reservation booking in data.Reservations
@@ -40,7 +43,8 @@ namespace eRestaurant.Framework.BLL
 							       where reservationParty.BillDate.Year == date.Year
 							          && reservationParty.BillDate.Month == date.Month
 								      && reservationParty.BillDate.Day == date.Day
-								      && (!reservationParty.OrderPaid.HasValue || reservationParty.OrderPaid >= time)
+                                      && DbFunctions.CreateTime(reservationParty.BillDate.Hour, reservationParty.BillDate.Minute, reservationParty.BillDate.Second) <= time
+								      //&& (!reservationParty.OrderPaid.HasValue || reservationParty.OrderPaid >= time)
 							       select reservationParty
 			    };
                         	
