@@ -4,18 +4,34 @@
     <div class ="row col-md-12">
         <h1>Split Bill</h1>
         Active Bills:
-        <asp:DropDownList runat="server" ID="ActiveBills" DataSourceID="SplitBillDataSource" DataTextField="DisplayText" DataValueField="KeyValue">
+        <asp:DropDownList runat="server" ID="ActiveBills" DataSourceID="SplitBillDataSource" 
+            DataTextField="DisplayText" DataValueField="KeyValue" AppendDataBoundItems="true">
             <asp:ListItem Value="0">[Select a bill]</asp:ListItem>
         </asp:DropDownList>
-        <asp:LinkButton ID="SelectBill" runat="server" CssClass="btn btn-primary" OnClick="SelectBill_Click">Select Bill</asp:LinkButton>
-        <asp:ObjectDataSource runat="server" ID="SplitBillDataSource" OldValuesParameterFormatString="original_{0}" SelectMethod="ListUnpaidBills" TypeName="eRestaurant.Framework.BLL.WaiterController"></asp:ObjectDataSource>
+        <asp:ObjectDataSource runat="server" ID="SplitBillDataSource" OldValuesParameterFormatString="original_{0}" 
+            SelectMethod="ListUnpaidBills" TypeName="eRestaurant.Framework.BLL.WaiterController"></asp:ObjectDataSource>
+        <asp:LinkButton ID="SelectBill" runat="server" CssClass="btn btn-primary" OnClick="SelectBill_Click">
+            Select Bill</asp:LinkButton>
+        <asp:Label ID="MessageLabel" runat="server"></asp:Label>
     </div>
 
     <div class="row">
         <div class ="col-md-6">
             <h2>Original Bill</h2>
-            <asp:GridView ID="OriginalBillItems" runat="server" AutoGenerateColumns="false">
-
+            <asp:GridView ID="OriginalBillItems" runat="server" AutoGenerateColumns="false" ItemType="eRestaurant.Framework.Entities.POCOs.OrderItem"
+                OnSelectedIndexChanging="BillItems_SelectedIndexChanging">
+                <Columns>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:LinkButton ID="MoveOver" runat="server" CommandName="Select" CssClass="btn btn-default">
+                                <span class="glyphicon glyphicon-forward"></span> Move
+                            </asp:LinkButton>
+                            <asp:Label ID="Quantity" runat="server" Text="<%# Item.Quantity %>" />
+                            <asp:Label ID="ItemName" runat="server" Text="<%# Item.ItemName %>" />
+                            <asp:Label ID="Price" runat="server" Text="<%# Item.Price%>" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
             </asp:GridView>
         </div>
         <div class="col-md-6">

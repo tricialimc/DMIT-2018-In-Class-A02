@@ -1,4 +1,5 @@
 ﻿using eRestaurant.Framework.DAL;
+using eRestaurant.Framework.Entities.DTOs;
 using eRestaurant.Framework.Entities.POCOs;
 using System;
 using System.Collections.Generic;
@@ -29,17 +30,17 @@ namespace eRestaurant.Framework.BLL
             }
         }
 
-        public object GetBill(int billId)
+        public Order GetBill(int billId)
         {
             using (var context = new RestaurantContext())
             {
                 var result = from data in context.Bills
                              where data.BillID == billId // This would be billID that they ask for
-                             select new //Order()
+                             select new Order()
                              {
                                  BillID = data.BillID,
                                  Items = (from info in data.BillItems
-                                          select new //OrderItem()
+                                          select new OrderItem()
                                          {
                                              ItemName = info.Items.Description,
                                              Price = info.SalePrice,

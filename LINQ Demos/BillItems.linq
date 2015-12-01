@@ -16,7 +16,7 @@ select new //UnpaidBill()
 {
 	DisplayText = "Bill" + data.BillID.ToString(),
 	KeyValue = data.BillID,
-	TotalAmount = data.BillItems.Sim(bi => bi.SalePrice * bi.Quantity),
+	TotalAmount = data.BillItems.Sum(bi => bi.SalePrice * bi.Quantity),
 	Table = data.Table,
 	Reservation= data.Reservation
 }
