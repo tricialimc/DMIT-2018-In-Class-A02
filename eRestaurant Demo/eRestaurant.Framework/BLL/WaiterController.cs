@@ -24,7 +24,7 @@ namespace eRestaurant.Framework.BLL
                              select new UnpaidBill()
                              {
                                  DisplayText = "Bill" + data.BillID.ToString(),
-                                 KeyValue = data.BillID
+                                 BillID = data.BillID
                              };
                 return result.ToList();
             }

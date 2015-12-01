@@ -3,15 +3,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     <div class ="row col-md-12">
         <h1>Split Bill</h1>
-        Active Bills:
-        <asp:DropDownList runat="server" ID="ActiveBills" DataSourceID="SplitBillDataSource" 
-            DataTextField="DisplayText" DataValueField="KeyValue" AppendDataBoundItems="true">
+        
+        Active Bills: 
+        <asp:DropDownList ID="ActiveBills" runat="server"
+            AppendDataBoundItems="true" DataSourceID="ActiveBillsDataSource" DataTextField="DisplayText" DataValueField="BillId">
             <asp:ListItem Value="0">[Select a bill]</asp:ListItem>
         </asp:DropDownList>
-        <asp:ObjectDataSource runat="server" ID="SplitBillDataSource" OldValuesParameterFormatString="original_{0}" 
-            SelectMethod="ListUnpaidBills" TypeName="eRestaurant.Framework.BLL.WaiterController"></asp:ObjectDataSource>
-        <asp:LinkButton ID="SelectBill" runat="server" CssClass="btn btn-primary" OnClick="SelectBill_Click">
-            Select Bill</asp:LinkButton>
+        <asp:LinkButton ID="SelectBill" runat="server"
+             CssClass="btn btn-primary" OnClick="SelectBill_Click">Select Bill</asp:LinkButton>
+
+        <asp:ObjectDataSource ID="ActiveBillsDataSource" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="ListUnpaidBills" TypeName="eRestaurant.Framework.BLL.WaiterController"></asp:ObjectDataSource>
         <asp:Label ID="MessageLabel" runat="server"></asp:Label>
     </div>
 

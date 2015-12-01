@@ -9,6 +9,6 @@ namespace eRestaurant.Framework.Entities.POCOs
     public class UnpaidBill
     {
         public string DisplayText { get; set; }
-        public int KeyValue { get; set; }
+        public int BillID { get; set; }
     }
 }
