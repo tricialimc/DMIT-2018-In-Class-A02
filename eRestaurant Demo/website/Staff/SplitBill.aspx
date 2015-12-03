@@ -11,7 +11,7 @@
         </asp:DropDownList>
         <asp:LinkButton ID="SelectBill" runat="server"
              CssClass="btn btn-primary" OnClick="SelectBill_Click">Select Bill</asp:LinkButton>
-
+        <asp:HiddenField ID="BillToSplit" runat="server" />
         <asp:ObjectDataSource ID="ActiveBillsDataSource" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="ListUnpaidBills" TypeName="eRestaurant.Framework.BLL.WaiterController"></asp:ObjectDataSource>
         <asp:Label ID="MessageLabel" runat="server"></asp:Label>
     </div>
@@ -19,7 +19,8 @@
     <div class="row">
         <div class ="col-md-6">
             <h2>Original Bill</h2>
-            <asp:GridView ID="OriginalBillItems" runat="server" AutoGenerateColumns="false" ItemType="eRestaurant.Framework.Entities.POCOs.OrderItem"
+            <asp:GridView ID="OriginalBillItems" runat="server" AutoGenerateColumns="false" 
+                ItemType="eRestaurant.Framework.Entities.POCOs.OrderItem"
                 OnSelectedIndexChanging="BillItems_SelectedIndexChanging">
                 <Columns>
                     <asp:TemplateField>
@@ -37,12 +38,32 @@
         </div>
         <div class="col-md-6">
             <h2>New Bill</h2>
-            <asp:GridView ID="NewBillItems" runat="server" AutoGenerateColumns="false">
+            <asp:GridView ID="NewBillItems" runat="server" AutoGenerateColumns="false" 
+                ItemType="eRestaurant.Framework.Entities.POCOs.OrderItem"
+                OnSelectedIndexChanging="BillItems_SelectedIndexChanging">
                 <EmptyDataTemplate>
                     New bill is empty. Move an item from the other bill.
                 </EmptyDataTemplate>
+                 <Columns>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:LinkButton ID="MoveOver" runat="server" CommandName="Select" CssClass="btn btn-default">
+                                <span class="glyphicon glyphicon-forward"></span> Move
+                            </asp:LinkButton>
+                            <asp:Label ID="Quantity" runat="server" Text="<%# Item.Quantity %>" />
+                            <asp:Label ID="ItemName" runat="server" Text="<%# Item.ItemName %>" />
+                            <asp:Label ID="Price" runat="server" Text="<%# Item.Price%>" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
             </asp:GridView>
         </div>
+    </div>
+
+    <div class ="row cold-md-12">
+        <asp:LinkButton ID ="SplitBill" runat="server" CssClass="btn btn-default" OnClick="SplitBill_Click">
+            Split the Bill
+        </asp:LinkButton>
     </div>
 </asp:Content>
 
