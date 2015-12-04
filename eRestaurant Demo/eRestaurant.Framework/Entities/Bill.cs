@@ -18,6 +18,7 @@ namespace eRestaurant.Framework.Entities
         public int? TableID { get; set; }
         public int? ReservationID { get; set; }
         public bool OrderReady { get; set; }
+        public TimeSpan? OrderServed { get; set; }
         public string Comment { get; set; }
 
         // Navigation Properties

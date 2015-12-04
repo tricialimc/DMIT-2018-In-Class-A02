@@ -39,7 +39,7 @@ public partial class Staff_SplitBill : System.Web.UI.Page
 
         GridView sendingGridView = sender as GridView; //notice the safe casting
         GridViewRow row = sendingGridView.Rows[e.NewSelectedIndex];
-        
+
         //1) get the info from the row
         var qtyLabel = row.FindControl("Quantity") as Label;
         //              <asp:Label ID="Quantity"... />
@@ -52,7 +52,7 @@ public partial class Staff_SplitBill : System.Web.UI.Page
             Price = decimal.Parse(priceLabel.Text)
         };
         //temp output
-        MessageLabel.Text = "I want to move " + qtyLabel.Text + " " + nameLabel.Text + 
+        MessageLabel.Text = "I want to move " + qtyLabel.Text + " " + nameLabel.Text +
                             " items onto the other bill (Gridview) $" + priceLabel.Text + " each";
 
         //2) move it to the other gridview
@@ -63,7 +63,7 @@ public partial class Staff_SplitBill : System.Web.UI.Page
             targetGridView = OriginalBillItems;
 
         List<OrderItem> targetItems = new List<OrderItem>();
-        foreach(GridViewRow targetRow in targetGridView.Rows)
+        foreach (GridViewRow targetRow in targetGridView.Rows)
         {
             qtyLabel = targetRow.FindControl("Quantity") as Label;
             nameLabel = targetRow.FindControl("ItemLabel") as Label;
@@ -73,32 +73,33 @@ public partial class Staff_SplitBill : System.Web.UI.Page
                     ItemName = nameLabel.Text,
                     Quantity = int.Parse(qtyLabel.Text),
                     Price = decimal.Parse(priceLabel.Text)
-                });
+                });         
+        
         }
         targetItems.Add(itemToMove);
         targetGridView.DataSource = targetItems;
         targetGridView.DataBind();
-
+    
         //3) take the row out of this list
-        List<OrderItem> senderItems = new List<OrderItem>();
-        for (int index = 0; index < sendingGridView.Rows.Count; index++)
-        {
-            if (index != e.NewSelectedIndex)
-            {
-                GridViewRow senderRow = sendingGridView.Rows[index];
-                qtyLabel = senderRow.FindControl("Quantity") as Label;
-                nameLabel = senderRow.FindControl("ItemLabel") as Label;
-                priceLabel = senderRow.FindControl("Price") as Label;
-                senderItems.Add(new OrderItem()
-                {
-                    ItemName = nameLabel.Text,
-                    Quantity = int.Parse(qtyLabel.Text),
-                    Price = decimal.Parse(priceLabel.Text)
-                });
-            }
-        }
-        sendingGridView.DataSource = senderItems;
-        sendingGridView.DataBind();
+        //List<OrderItem> senderItems = new List<OrderItem>();
+        //for (int index = 0; index < sendingGridView.Rows.Count; index++)
+        //{
+        //    if (index != e.NewSelectedIndex)
+        //    {
+        //        GridViewRow senderRow = sendingGridView.Rows[index];
+        //        qtyLabel = senderRow.FindControl("Quantity") as Label;
+        //        nameLabel = senderRow.FindControl("ItemLabel") as Label;
+        //        priceLabel = senderRow.FindControl("Price") as Label;
+        //        senderItems.Add(new OrderItem()
+        //        {
+        //            ItemName = nameLabel.Text,
+        //            Quantity = int.Parse(qtyLabel.Text),
+        //            Price = decimal.Parse(priceLabel.Text)
+        //        });
+        //    }
+        //}
+        //sendingGridView.DataSource = senderItems;
+        //sendingGridView.DataBind();
     }
 
     protected void SplitBill_Click(object sender, EventArgs e)
